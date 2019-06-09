@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>418</width>
+    <width>710</width>
     <height>513</height>
    </rect>
   </property>
@@ -22,23 +22,43 @@
   <widget class="QWidget" name="centralWidget">
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
-     <widget class="sfCanvas" name="widget" native="true">
-      <property name="enabled">
-       <bool>true</bool>
-      </property>
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Fixed" vsizetype="Ignored">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="minimumSize">
-       <size>
-        <width>400</width>
-        <height>400</height>
-       </size>
-      </property>
-     </widget>
+     <layout class="QHBoxLayout" name="horizontalLayout_2">
+      <item>
+       <widget class="sfCanvas" name="widget" native="true">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Ignored">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="minimumSize">
+         <size>
+          <width>400</width>
+          <height>400</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QTextBrowser" name="textBrowser"/>
+      </item>
+     </layout>
     </item>
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout">
@@ -65,7 +85,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>418</width>
+     <width>710</width>
      <height>23</height>
     </rect>
    </property>
@@ -98,8 +118,8 @@
    <slot>exit()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>262</x>
-     <y>426</y>
+     <x>205</x>
+     <y>387</y>
     </hint>
     <hint type="destinationlabel">
      <x>193</x>
@@ -107,8 +127,25 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>loadButton</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>loadfile()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>285</x>
+     <y>386</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>350</x>
+     <y>458</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>exit()</slot>
+  <slot>loadfile()</slot>
  </slots>
 </ui>

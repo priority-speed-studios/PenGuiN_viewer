@@ -18,8 +18,11 @@ public:
 
 public slots:
     void exit();
+    void loadfile();
+
 private:
     Ui::MainWindow *ui;
+    QString loadedText;
 };
 
 #endif // MAINWINDOW_H
