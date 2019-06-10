@@ -8,6 +8,15 @@ namespace Ui {
 class MainWindow;
 }
 
+struct PGN {
+    QString white="",black="",comment="";
+    int move=0;
+    PGN(QString w,QString b,QString com,int m)
+    {
+        white = w; black = b; comment = com; move = m;
+    }
+};
+
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
@@ -23,6 +32,7 @@ public slots:
 private:
     Ui::MainWindow *ui;
     QString loadedText;
+    QList<PGN> list;
 };
 
 #endif // MAINWINDOW_H
