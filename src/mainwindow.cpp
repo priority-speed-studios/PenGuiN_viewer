@@ -44,6 +44,8 @@ void MainWindow::loadfile()
 
     QRegularExpression reg("\\[(?<id>(.*?)) \"(?<detail>(.*?))\"\\]",
                            QRegularExpression::DotMatchesEverythingOption);
+    QRegularExpression reg2("([KQRBN]?[a-h]?x?[a-h][1-8]=?[KQRBN]?[\\+#]?|O-O|O-O-O)");
+    // matches most PGN notated moves
     QRegularExpressionMatchIterator regexMatchIterator = reg.globalMatch(loadedText);
     while (regexMatchIterator.hasNext())
     {
