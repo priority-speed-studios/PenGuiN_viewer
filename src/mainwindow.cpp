@@ -46,7 +46,6 @@ void MainWindow::loadfile()
 
     QRegularExpression reg("\\[(?<id>(.*?)) \"(?<detail>(.*?))\"\\]",
                            QRegularExpression::DotMatchesEverythingOption);
-
     QRegularExpressionMatchIterator regexMatchIterator = reg.globalMatch(loadedText);
     while (regexMatchIterator.hasNext())
     {
@@ -58,27 +57,19 @@ void MainWindow::loadfile()
     }
     writer.writeEndDocument();
     ui->textBrowser->setHtml(writerBuffer);
-
-    //reg = QRegularExpression("([KQRBN]?[a-h]?x?[a-h][1-8]=?[KQRBN]?[\\+#]?|O-O|O-O-O)");
-    reg = QRegularExpression("((?<num>\\d+). ([KQRBN]?[a-h]?x?[a-h][\\\\+#]?[1-8]=?[KQRBN]?|O-O|O-O-O)(\\+?)( |\n)"
-                             "([KQRBN]?[a-h]?x?[a-h][\\\\+#]?[1-8]=?[KQRBN]?|O-O|O-O-O)(\\+?))"
-                             "( |\n)(\\{.+?\\})?|\\d+. ([KQRBN]?[a-h]?x?[a-h][\\\\+#]?[1-8]=?"
-                             "[KQRBN]?|O-O|O-O-O)(\\+?)(( |\n)(\\{.+?\\}))?");
     reg = QRegularExpression(
-                "((?<num>(\\d+)). (?<white>([KQRBN]?[a-h]?x?[a-h][\\\\+#]?[1-8]=?[KQRBN]?|O-O|O-O-O)(\\+?))( |\n)(?<black>([KQRBN]?[a-h]?x?[a-h][\\\\+#]?[1-8]=?[KQRBN]?|O-O|O-O-O)(\\+?))( |\n)(?<comment>\\{.+?\\})?)|((?<numi>\\d+).( |\n)(?<whitei>([KQRBN]?[a-h]?x?[a-h][\\\\+#]?[1-8]=?[KQRBN]?|O-O|O-O-O))(\\+?)(( |\n)((?<commenti>\\{.+?\\})?)))");
-
+                "(?<num>(\\d+)\\.) (?<white>([KQRBN]?[a-h]?x?[a-h][1-8]=?[KQRBN]?[\\+#]?|O-O|O-O-O)"
+                "( |\n))(?<black>([KQRBN]?[a-h]?x?[a-h][1-8]=?[KQRBN]?[\\+#]?|O-O|O-O-O))?"
+                "((( |\n)\\{?<comment>(.*?)\\})?)");
     regexMatchIterator = reg.globalMatch(loadedText);
     while(regexMatchIterator.hasNext())
     {
         QRegularExpressionMatch match = regexMatchIterator.next();
-        int num = (match.captured("num").trimmed()=="" ?
-                       match.captured("numi").trimmed():match.captured("num").trimmed()).toInt();
-        list.push_back(PGN(match.captured("white").trimmed()=="" ?
-                               match.captured("whitei").trimmed():match.captured("white").trimmed(),
-                           match.captured("black").trimmed()=="" ?
-                               match.captured("blacki").trimmed():match.captured("black").trimmed(),
-                           match.captured("comment").trimmed()=="" ?
-                               match.captured("commenti").trimmed():match.captured("comment").trimmed(),num));
+        int num = match.captured("num").trimmed().toInt();
+        list.push_back(PGN(match.captured("white").trimmed(),
+                           match.captured("black").trimmed(),
+                           match.captured("comment").trimmed(),
+                           num));
     }
     // data in list
 }
