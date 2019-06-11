@@ -58,9 +58,9 @@ void MainWindow::loadfile()
     writer.writeEndDocument();
     ui->textBrowser->setHtml(writerBuffer);
     reg = QRegularExpression(
-                "(?<num>(\\d+)\\.) (?<white>([KQRBN]?[a-h]?x?[a-h][1-8]=?[KQRBN]?[\\+#]?|O-O|O-O-O)"
+                "((?<num>\\d+)\\.) (?<white>([KQRBN]?[a-h]?x?[a-h][1-8]=?[KQRBN]?[\\+#]?|O-O|O-O-O)"
                 "( |\n))(?<black>([KQRBN]?[a-h]?x?[a-h][1-8]=?[KQRBN]?[\\+#]?|O-O|O-O-O))?"
-                "((( |\n)\\{?<comment>(.*?)\\})?)");
+                "((( |\n)\\{(?<comment>(.*?))\\})?)");
     regexMatchIterator = reg.globalMatch(loadedText);
     while(regexMatchIterator.hasNext())
     {
@@ -70,6 +70,10 @@ void MainWindow::loadfile()
                            match.captured("black").trimmed(),
                            match.captured("comment").trimmed(),
                            num));
+        QTextStream(stdout) << match.captured("white").trimmed()<< " "<<
+                match.captured("black").trimmed()<< " "<<
+                match.captured("comment").trimmed()<< " "<<
+                num<<"\n";
     }
     // data in list
 }
