@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QWidget>
+#include <QListWidgetItem>
 
 namespace Ui {
 class MainWindow;
@@ -28,6 +29,7 @@ public:
 public slots:
     void exit();
     void loadfile();
+    void changeHighLight(QListWidgetItem*);
 
 private:
     Ui::MainWindow *ui;

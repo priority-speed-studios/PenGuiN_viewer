@@ -6,6 +6,7 @@
 #include <QTextStream>
 #include <QDebug>
 
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -62,18 +63,29 @@ void MainWindow::loadfile()
                 "( |\n))(?<black>([KQRBN]?[a-h]?x?[a-h][1-8]=?[KQRBN]?[\\+#]?|O-O|O-O-O))?"
                 "((( |\n)\\{(?<comment>(.*?))\\})?)");
     regexMatchIterator = reg.globalMatch(loadedText);
+    ui->listWidget->clear();
+    ui->listWidget->addItem("0. Begin");
     while(regexMatchIterator.hasNext())
     {
         QRegularExpressionMatch match = regexMatchIterator.next();
-        int num = match.captured("num").trimmed().toInt();
         list.push_back(PGN(match.captured("white").trimmed(),
                            match.captured("black").trimmed(),
                            match.captured("comment").trimmed(),
-                           num));
-        QTextStream(stdout) << match.captured("white").trimmed()<< " "<<
+                           match.captured("num").trimmed().toInt()));
+
+        ui->listWidget->addItem(QString::number(list.last().move) + ". " +
+                                list.last().white + " " +
+                                list.last().black);
+        /*QTextStream(stdout) << match.captured("white").trimmed()<< " "<<
                 match.captured("black").trimmed()<< " "<<
                 match.captured("comment").trimmed()<< " "<<
-                num<<"\n";
+                num<<"\n";*/
     }
-    // data in list
+    ui->listWidget->item(0)->setTextColor(QColor(100,255,100));
+    ui->listWidget->sortItems();
+}
+
+void MainWindow::changeHighLight(QListWidgetItem */*item*/)
+{
+// handle hightlight change here
 }

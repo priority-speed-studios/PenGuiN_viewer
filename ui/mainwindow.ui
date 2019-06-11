@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>710</width>
-    <height>513</height>
+    <width>728</width>
+    <height>515</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -20,43 +20,41 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <layout class="QVBoxLayout" name="verticalLayout">
+   <layout class="QVBoxLayout" name="verticalLayout_2">
     <item>
-     <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <layout class="QHBoxLayout" name="horizontalLayout_3">
       <item>
-       <widget class="sfCanvas" name="widget" native="true">
-        <property name="enabled">
-         <bool>true</bool>
-        </property>
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Ignored">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="minimumSize">
-         <size>
-          <width>400</width>
-          <height>400</height>
-         </size>
-        </property>
-       </widget>
+       <layout class="QHBoxLayout" name="horizontalLayout_2">
+        <item>
+         <widget class="sfCanvas" name="widget" native="true">
+          <property name="enabled">
+           <bool>true</bool>
+          </property>
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Ignored">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>400</width>
+            <height>400</height>
+           </size>
+          </property>
+         </widget>
+        </item>
+       </layout>
       </item>
       <item>
-       <spacer name="horizontalSpacer">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>40</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-      <item>
-       <widget class="QTextBrowser" name="textBrowser"/>
+       <layout class="QVBoxLayout" name="verticalLayout">
+        <item>
+         <widget class="QTextBrowser" name="textBrowser"/>
+        </item>
+        <item>
+         <widget class="QListWidget" name="listWidget"/>
+        </item>
+       </layout>
       </item>
      </layout>
     </item>
@@ -85,7 +83,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>710</width>
+     <width>728</width>
      <height>23</height>
     </rect>
    </property>
@@ -118,8 +116,8 @@
    <slot>exit()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>205</x>
-     <y>387</y>
+     <x>215</x>
+     <y>482</y>
     </hint>
     <hint type="destinationlabel">
      <x>193</x>
@@ -134,8 +132,8 @@
    <slot>loadfile()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>285</x>
-     <y>386</y>
+     <x>652</x>
+     <y>482</y>
     </hint>
     <hint type="destinationlabel">
      <x>350</x>
@@ -143,9 +141,26 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>listWidget</sender>
+   <signal>itemClicked(QListWidgetItem*)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>changeHighLight(QListWidgetItem*)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>555</x>
+     <y>346</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>723</x>
+     <y>259</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>exit()</slot>
   <slot>loadfile()</slot>
+  <slot>changeHighLight(QListWidgetItem*)</slot>
  </slots>
 </ui>
