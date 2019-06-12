@@ -10,9 +10,7 @@ private:
     void onInit();
     void onUpdate();
 
-    sf::Texture mTexture;
-    sf::Sprite mSprite;
-    sf::Image mImage;
+    sf::Texture king,queen,knight,bishop,rook,pawn;
 
 public:
     explicit sfCanvas(QWidget *parent, const QPoint& position=QPoint(0,0), const QSize& size=QSize(200,200));

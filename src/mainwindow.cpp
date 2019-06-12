@@ -77,7 +77,7 @@ void MainWindow::loadfile()
                                 list.last().white + " " +
                                 list.last().black);
     }
-    ui->listWidget->item(0)->setTextColor(QColor(100,255,100));
+    ui->listWidget->setCurrentRow(0);
 }
 
 void MainWindow::changeHighLight(QListWidgetItem */*item*/)
