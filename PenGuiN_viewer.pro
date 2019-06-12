@@ -36,3 +36,6 @@ HEADERS += \
 DISTFILES += \
         LICENSE \
         README.md
+
+RESOURCES += \
+        res.qrc

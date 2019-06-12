@@ -76,13 +76,8 @@ void MainWindow::loadfile()
         ui->listWidget->addItem(QString::number(list.last().move) + ". " +
                                 list.last().white + " " +
                                 list.last().black);
-        /*QTextStream(stdout) << match.captured("white").trimmed()<< " "<<
-                match.captured("black").trimmed()<< " "<<
-                match.captured("comment").trimmed()<< " "<<
-                num<<"\n";*/
     }
     ui->listWidget->item(0)->setTextColor(QColor(100,255,100));
-    ui->listWidget->sortItems();
 }
 
 void MainWindow::changeHighLight(QListWidgetItem */*item*/)
