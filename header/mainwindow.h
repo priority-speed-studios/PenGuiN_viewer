@@ -12,8 +12,8 @@ class MainWindow;
 
 struct PGN {
     QString white="",black="",comment="";
-    int move=0;
-    PGN(QString w,QString b,QString com,int m)
+    unsigned move=0;
+    PGN(QString w,QString b,QString com,unsigned m)
     {
         white = w; black = b; comment = com; move = m;
     }

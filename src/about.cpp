@@ -2,6 +2,7 @@
 #include "ui_about.h"
 #include <QTextStream>
 #include <QFile>
+#include <QDesktopServices>
 
 About::About(QWidget *parent) :
     QDialog(parent),
@@ -28,4 +29,10 @@ void About::showAboutProgram()
     file.open(QFile::ReadOnly | QFile::Text);
     ui->textBrowser->setHtml(file.readAll());
     show();
+}
+
+void About::openLink(QUrl url)
+{
+    QDesktopServices::openUrl(url);
+    hide();
 }

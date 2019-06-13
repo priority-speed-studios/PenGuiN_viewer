@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"
 #include <QFileDialog>
 #include <QRegularExpression>
+#include <QMessageBox>
 #include <QXmlStreamWriter>
 #include "about.h"
 #include <QTextStream>
@@ -83,17 +84,21 @@ void MainWindow::loadfile()
     regexMatchIterator = reg.globalMatch(loadedText);
     ui->listWidget->clear();
     ui->listWidget->addItem("0. Begin");
+    unsigned i=0;
     while(regexMatchIterator.hasNext())
     {
+        i++;
         QRegularExpressionMatch match = regexMatchIterator.next();
         list.push_back(PGN(match.captured("white").trimmed(),
                            match.captured("black").trimmed(),
                            match.captured("comment").trimmed(),
-                           match.captured("num").trimmed().toInt()));
+                           unsigned(match.captured("num").trimmed().toInt())));
 
         ui->listWidget->addItem(QString::number(list.last().move) + ". " +
                                 list.last().white + " " +
                                 list.last().black);
+        if(i!=list.last().move)
+            QMessageBox::information(this,"Corrupt?","The game data maybe corrupt! Call the cops");
     }
     ui->listWidget->setCurrentRow(0);
 }

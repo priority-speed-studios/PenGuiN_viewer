@@ -2,6 +2,7 @@
 #define ABOUT_H
 
 #include <QDialog>
+#include <QUrl>
 
 namespace Ui {
 class About;
@@ -18,6 +19,7 @@ public:
 public slots:
     void showAboutUs();
     void showAboutProgram();
+    void openLink(QUrl);
 
 private:
     Ui::About *ui;
