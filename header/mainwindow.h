@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QWidget>
 #include <QListWidgetItem>
+#include "about.h"
 
 namespace Ui {
 class MainWindow;
@@ -35,6 +36,7 @@ private:
     Ui::MainWindow *ui;
     QString loadedText;
     QList<PGN> list;
+    About about;
 };
 
 #endif // MAINWINDOW_H

@@ -3,16 +3,34 @@
 #include <QFileDialog>
 #include <QRegularExpression>
 #include <QXmlStreamWriter>
+#include "about.h"
 #include <QTextStream>
 #include <QDebug>
 
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::MainWindow)
+    ui(new Ui::MainWindow),
+    about(this)
 {
     ui->setupUi(this);
     loadedText = "";
+    this->setWindowTitle("PenGuiN Viewer");
+    for(QAction* action : ui->menuFile->actions())
+    {
+        if(action->text().contains("PGN"))
+            connect(action,&QAction::triggered,this,&MainWindow::loadfile);
+        else if(action->text().contains("Exit"))
+            connect(action,&QAction::triggered,this,&MainWindow::exit);
+    }
+    for(QAction* action  : ui->menuAbout->actions())
+    {
+        if(action->text().contains("Us"))
+            connect(action,&QAction::triggered,&about,&About::showAboutUs);
+        else if(action->text().contains("Program"))
+            connect(action,&QAction::triggered,&about,&About::showAboutProgram);
+
+    }
 }
 
 MainWindow::~MainWindow()
@@ -82,5 +100,5 @@ void MainWindow::loadfile()
 
 void MainWindow::changeHighLight(QListWidgetItem */*item*/)
 {
-// handle hightlight change here
+    // handle hightlight change here
 }

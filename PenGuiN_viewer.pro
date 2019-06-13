@@ -12,7 +12,10 @@ DEFINES += QT_DEPRECATED_WARNINGS
 # You can also select to disable deprecated APIs only up to a certain version of Qt.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
+INCLUDEPATH += ./header
+
 SOURCES += \
+        src/about.cpp \
         src/main.cpp \
         src/mainwindow.cpp \
         src/qsfmlcanvas.cpp \
@@ -26,9 +29,11 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 LIBS +=  -lsfml-graphics -lsfml-window -lsfml-audio -lsfml-network -lsfml-system
 
 FORMS += \
+        ui/about.ui \
         ui/mainwindow.ui
 
 HEADERS += \
+        header/about.h \
         header/mainwindow.h \
         header/qsfmlcanvas.h \
         header/sfmlcanvas.h
