@@ -6,7 +6,7 @@
         <file alias="pawn">pieces/pawn.png</file>
         <file alias="queen">pieces/queen.png</file>
         <file alias="rook">pieces/rook.png</file>
-        <file>aboutUs.html</file>
-        <file>aboutProgram.html</file>
+	<file alias="aboutUs.html">ui/aboutUs.html</file>
+	<file alias="aboutProgram.html">ui/aboutProgram.html</file>
     </qresource>
 </RCC>
