@@ -1,5 +1,4 @@
 #include <QApplication>
-#include <SFML/Graphics.hpp>
 #include "header/mainwindow.h"
 
 int main(int argc, char *argv[])
