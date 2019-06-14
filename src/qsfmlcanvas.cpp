@@ -1,4 +1,4 @@
-#include "header/qsfmlcanvas.h"
+#include "qsfmlcanvas.h"
 
 QSFMLCanvas::QSFMLCanvas(QWidget *parent, const QPoint &position, const QSize &size, int frameTime) :
     QWidget(parent), mInitialized(false)
@@ -41,6 +41,7 @@ QPaintEngine* QSFMLCanvas::paintEngine() const
 {
     return nullptr;
 }
+
 
 void QSFMLCanvas::paintEvent(QPaintEvent* e)
 {

@@ -1,4 +1,4 @@
-#include "header/sfmlcanvas.h"
+#include "sfmlcanvas.h"
 #include <QResource>
 
 sfCanvas::sfCanvas(QWidget *parent, const QPoint& position, const QSize& size) :
@@ -20,15 +20,21 @@ sfCanvas::sfCanvas(QWidget *parent, const QPoint& position, const QSize& size) :
 
 void sfCanvas::onInit()
 {
-
+    h=height(); w=width();
 }
 
 void sfCanvas::onUpdate()
 {
-    sf::RenderWindow::clear(sf::Color::Yellow);
+    sf::RenderWindow::clear(sf::Color::Transparent);
+    if(h!=height() || w!=width())
+    {
+        h=height(); w=width();
+        sf::RenderWindow::create(winId());
+    }
     int h = height()/8, w = width()/8;
 
     sf::RectangleShape rect(sf::Vector2f(w,h));
+
     for(int i=0;i<8;i++)
         for(int j=0;j<8;j++)
         {

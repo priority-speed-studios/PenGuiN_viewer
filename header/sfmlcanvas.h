@@ -9,7 +9,7 @@ class sfCanvas : public QSFMLCanvas
 private:
     void onInit();
     void onUpdate();
-
+    int h,w;
     sf::Texture king,queen,knight,bishop,rook,pawn;
 
 public:
