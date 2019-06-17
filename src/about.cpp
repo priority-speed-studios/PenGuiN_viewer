@@ -3,6 +3,7 @@
 #include <QTextStream>
 #include <QFile>
 #include <QDesktopServices>
+#include <iostream>
 
 About::About(QWidget *parent) :
     QDialog(parent),

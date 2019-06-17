@@ -36,7 +36,7 @@ private:
     Ui::MainWindow *ui;
     QString loadedText;
     QList<PGN> list;
-    About about;
+    About *about;
 };
 
 #endif // MAINWINDOW_H

@@ -11,11 +11,11 @@
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::MainWindow),
-    about(this)
+    ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
     loadedText = "";
+    about = new About(this);
     this->setWindowTitle("PenGuiN Viewer");
     for(QAction* action : ui->menuFile->actions())
     {
@@ -27,9 +27,9 @@ MainWindow::MainWindow(QWidget *parent) :
     for(QAction* action  : ui->menuAbout->actions())
     {
         if(action->text().contains("Us"))
-            connect(action,&QAction::triggered,&about,&About::showAboutUs);
+            connect(action,&QAction::triggered,about,&About::showAboutUs);
         else if(action->text().contains("Program"))
-            connect(action,&QAction::triggered,&about,&About::showAboutProgram);
+            connect(action,&QAction::triggered,about,&About::showAboutProgram);
 
     }
 }
@@ -94,16 +94,18 @@ void MainWindow::loadfile()
                            match.captured("comment").trimmed(),
                            unsigned(match.captured("num").trimmed().toInt())));
 
-        ui->listWidget->addItem(QString::number(list.last().move) + ". " +
-                                list.last().white + " " +
-                                list.last().black);
+        ui->listWidget->addItem(QString::number(list.last().move) + ".1. " +
+                                list.last().white);
+        if(list.last().black != "")
+            ui->listWidget->addItem(QString::number(list.last().move) + ".2. " +
+                                    list.last().black);
         if(i!=list.last().move)
             QMessageBox::information(this,"Corrupt?","The game data maybe corrupt! Call the cops");
     }
     ui->listWidget->setCurrentRow(0);
 }
 
-void MainWindow::changeHighLight(QListWidgetItem */*item*/)
+void MainWindow::changeHighLight(QListWidgetItem *item)
 {
-    // handle hightlight change here
+    ui->statusBar->showMessage(list[(item->text().split(".")[0]).toInt()].comment);
 }
