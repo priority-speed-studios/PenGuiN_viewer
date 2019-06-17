@@ -12,12 +12,16 @@ enum class PieceType
 struct Piece
 {
     PieceType type;
-    bool polarity;
     QPair<int,int> position;
+    bool polarity;
+#if __linux__
+    char unused[3]; // just for providing the padding, faster memory access
+#endif
 };
 
 class ChessBoard
 {
+    Piece pieces[32];
 public:
     ChessBoard();
 };

@@ -194,6 +194,38 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>listWidget</sender>
+   <signal>itemActivated(QListWidgetItem*)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>changeHighLight(QListWidgetItem*)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>629</x>
+     <y>357</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>720</x>
+     <y>329</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>listWidget</sender>
+   <signal>itemEntered(QListWidgetItem*)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>changeHighLight(QListWidgetItem*)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>617</x>
+     <y>368</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>720</x>
+     <y>373</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>exit()</slot>
