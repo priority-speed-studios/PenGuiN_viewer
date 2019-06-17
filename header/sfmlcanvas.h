@@ -3,19 +3,6 @@
 
 #include "qsfmlcanvas.h"
 
-
-enum class PieceType
-{
-    Empty, Pawn, Bishop, Knight, Rook, Queen, King
-};
-
-struct Piece
-{
-    PieceType type;
-    bool polarity;
-    QPair<int,int> position;
-};
-
 class sfCanvas : public QSFMLCanvas
 {
     Q_OBJECT

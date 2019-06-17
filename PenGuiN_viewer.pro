@@ -15,6 +15,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 INCLUDEPATH += ./header
 
 SOURCES += \
+        src/chessboard.cpp \
         src/about.cpp \
         src/main.cpp \
         src/mainwindow.cpp \
@@ -33,6 +34,7 @@ FORMS += \
         ui/mainwindow.ui
 
 HEADERS += \
+        header/chessboard.h \
         header/about.h \
         header/mainwindow.h \
         header/qsfmlcanvas.h \
