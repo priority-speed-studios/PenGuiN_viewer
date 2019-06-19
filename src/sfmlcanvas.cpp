@@ -1,21 +1,30 @@
 #include "sfmlcanvas.h"
 #include <QResource>
+#include <QTextStream>
 
 sfCanvas::sfCanvas(QWidget *parent, const QPoint& position, const QSize& size) :
-    QSFMLCanvas(parent, position, size)
+    QSFMLCanvas(parent, position, size),
+    board(nullptr)
 {
     QResource n(":/king");
-    king.loadFromMemory(n.data(),std::size_t(n.size()));
+    pieceMap[Chess::PieceType::King].loadFromMemory(n.data(),std::size_t(n.size()));
     n.setFileName(":/queen");
-    queen.loadFromMemory(n.data(),std::size_t(n.size()));
+    pieceMap[Chess::PieceType::Queen].loadFromMemory(n.data(),std::size_t(n.size()));
     n.setFileName(":/bishop");
-    bishop.loadFromMemory(n.data(),std::size_t(n.size()));
+    pieceMap[Chess::PieceType::Bishop].loadFromMemory(n.data(),std::size_t(n.size()));
     n.setFileName(":/knight");
-    knight.loadFromMemory(n.data(),std::size_t(n.size()));
+    pieceMap[Chess::PieceType::Knight].loadFromMemory(n.data(),std::size_t(n.size()));
     n.setFileName(":/rook");
-    rook.loadFromMemory(n.data(),std::size_t(n.size()));
+    pieceMap[Chess::PieceType::Rook].loadFromMemory(n.data(),std::size_t(n.size()));
     n.setFileName(":/pawn");
-    pawn.loadFromMemory(n.data(),std::size_t(n.size()));
+    pieceMap[Chess::PieceType::Pawn].loadFromMemory(n.data(),std::size_t(n.size()));
+}
+
+void sfCanvas::changeBoard(Chess::ChessBoard *board)
+{
+    if(board == nullptr)
+        return;
+    this->board = board;
 }
 
 void sfCanvas::onInit()
@@ -41,7 +50,7 @@ void sfCanvas::onUpdate()
             rect.setFillColor((i+j)%2?sf::Color(179,179,179):sf::Color(77,77,77));
             rect.setPosition(i*w,j*h);
             sf::RenderWindow::draw(rect);
-            if(j==6 || j==1)
+            /*if(j==6 || j==1)
             {
                 rect.setTexture(&pawn);
                 rect.setFillColor(j==6?sf::Color::Black:sf::Color::White);
@@ -63,6 +72,15 @@ void sfCanvas::onUpdate()
                 rect.setFillColor(j==7?sf::Color::Black:sf::Color::White);
                 sf::RenderWindow::draw(rect);
                 rect.setTexture(nullptr,true);
-            }
+            }*/
+        }
+    if(board != nullptr)
+        for(Chess::Piece piece : board->getState())
+        {
+            if(piece.type == Chess::PieceType::Empty) continue;
+            rect.setTexture(&pieceMap[piece.type],true);
+            rect.setPosition((piece.position.first-1)*w,(piece.position.second-1)*h);
+            rect.setFillColor(piece.polarity?sf::Color::Black:sf::Color::White);
+            sf::RenderWindow::draw(rect);
         }
 }

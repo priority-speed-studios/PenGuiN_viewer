@@ -30,8 +30,9 @@ MainWindow::MainWindow(QWidget *parent) :
             connect(action,&QAction::triggered,about,&About::showAboutUs);
         else if(action->text().contains("Program"))
             connect(action,&QAction::triggered,about,&About::showAboutProgram);
-
     }
+
+    connect(this,&MainWindow::boardStateChanged,ui->widget,&sfCanvas::changeBoard);
 }
 
 MainWindow::~MainWindow()
@@ -103,9 +104,12 @@ void MainWindow::loadfile()
             QMessageBox::information(this,"Corrupt?","The game data maybe corrupt! Call the cops");
     }
     ui->listWidget->setCurrentRow(0);
+    boards.resize(list.length());
+    emit this->boardStateChanged(&boards[0]);
 }
 
 void MainWindow::changeHighLight(QListWidgetItem *item)
 {
     ui->statusBar->showMessage(list[(item->text().split(".")[0]).toInt()].comment);
+    emit this->boardStateChanged(&boards[(item->text().split(".")[0]).toInt()]);
 }

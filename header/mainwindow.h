@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QWidget>
 #include <QListWidgetItem>
+#include "chessboard.h"
 #include "about.h"
 
 namespace Ui {
@@ -32,11 +33,15 @@ public slots:
     void loadfile();
     void changeHighLight(QListWidgetItem*);
 
+signals:
+    void boardStateChanged(Chess::ChessBoard* next);
+
 private:
     Ui::MainWindow *ui;
     QString loadedText;
     QList<PGN> list;
     About *about;
+    QVector<Chess::ChessBoard> boards;
 };
 
 #endif // MAINWINDOW_H
