@@ -104,12 +104,14 @@ void MainWindow::loadfile()
             QMessageBox::information(this,"Corrupt?","The game data maybe corrupt! Call the cops");
     }
     ui->listWidget->setCurrentRow(0);
-    boards.resize(list.length());
+    boards.resize(list.length()*2);
     emit this->boardStateChanged(&boards[0]);
 }
 
 void MainWindow::changeHighLight(QListWidgetItem *item)
 {
-    ui->statusBar->showMessage(list[(item->text().split(".")[0]).toInt()].comment);
-    emit this->boardStateChanged(&boards[(item->text().split(".")[0]).toInt()]);
+    int index = item->text().split(".")[0].toInt();
+    int part = item->text().split(".")[0].toInt();
+    ui->statusBar->showMessage(list[index-1].comment);
+    emit this->boardStateChanged(&boards[((index-1)*2)+(part==2?1:0)]);
 }
