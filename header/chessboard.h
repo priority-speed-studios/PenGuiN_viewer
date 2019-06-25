@@ -29,11 +29,11 @@ struct Piece
     bool polarity;
 #if __linux__
     char unused[3]; // just for providing the padding, faster memory access
+#endif
     Piece(PieceType type=PieceType::Empty, QPair<int,int> position={0,0}, bool polarity=false)
     {
         this->type = type; this->position = position; this->polarity = polarity;
     }
-#endif
 };
 
 class ChessBoard
