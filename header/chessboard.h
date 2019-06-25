@@ -11,6 +11,17 @@ enum class PieceType
     Empty, Pawn, Bishop, Knight, Rook, Queen, King
 };
 
+struct move // parse moves to form this struct (@2bit-hack 's implementation)
+{
+    bool polarity; // black or white
+    PieceType type; // piecetype
+    uint8_t origin; // piece origin of format base10(file)*10 + base10(rank)
+    uint8_t dest; // piece destination of format base10(file)*10 + base10(rank)
+    PieceType promo; // promoted to
+    enum class Castle{None, Short, Long} castle; // typeof castle
+    enum class CheckMate{None, Check, Mate} isCheckMate; // typeof check/mate
+};
+
 struct Piece
 {
     PieceType type;
